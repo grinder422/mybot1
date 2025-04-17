@@ -25,3 +25,18 @@ my_form_bot/
 ├── requirements.txt      # Файл з залежностями проєкту
 ├── README.md             # Опис проєкту
 ├── .gitignore            # Перелік файлів і папок, які ігноруються Git
+├── web/                      # Веб-інтерфейс проєкту
+│   ├── index.html            # Головна HTML-сторінка сайту
+│   ├── style.css             # Файл стилів CSS
+│   ├── robots.txt            # Файл для інструкцій пошуковим системам
+│   ├── sitemap.xml           # Карта сайту для SEO
+│
+├── assets/                   # Статичні ресурси
+│   └── favicons/             # Набір favicon-файлів для різних пристроїв
+│       ├── favicon.ico
+│       ├── favicon.svg
+│       ├── apple-touch-icon.png
+│       ├──favicon-96x96.png
+│       ├──site.webmanifest
+│       ├──web-app-manifest-192x192.png
+│       ├──web-app-manifest-512x512.png
