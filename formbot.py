@@ -1,14 +1,14 @@
+import re
+from datetime import datetime
 import logging
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.types import Message
-from aiogram import F
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.utils.keyboard import ReplyKeyboardBuilder
-import re
-from datetime import datetime
+
 
 # Налаштування логування
 logging.basicConfig(level=logging.INFO)
@@ -85,7 +85,7 @@ async def start(message: Message, state: FSMContext):
     builder.button(text="Складський працівник")
     builder.adjust(2)
 
-    await message.answer("Яку посаду ви бажаєте отримати?", reply_markup=builder.as_markup(resize_keyboard=True))
+    await message.answer("Яку посаду бажаєте?", reply_markup=builder.as_markup(resize_keyboard=True))
     await state.set_state(ApplicationForm.position)
 
 # Обробка вибору посади
