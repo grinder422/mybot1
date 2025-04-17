@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://grinder422.github.io/formbot/sitemap.xml
