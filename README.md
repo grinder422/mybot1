@@ -91,7 +91,7 @@ pip install -r requirements.txt
 ### 🚀 Запуск проєкту у режимі розробки
 
 ```bash
-python formbot.py
+    python formbot.py
 ```
 
 ## 🔧 Базові команди бота

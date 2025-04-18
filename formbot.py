@@ -1,3 +1,7 @@
+import cProfile
+profiler = cProfile.Profile()
+profiler.enable()
+from memory_profiler import profile
 import re
 from datetime import datetime
 import logging
@@ -101,7 +105,7 @@ async def start(message: Message, state: FSMContext):
     await state.set_state(ApplicationForm.position)
 
 # Обробка вибору посади
-@dp.message(ApplicationForm.position)
+@profile(ApplicationForm.position)
 async def process_position(message: Message, state: FSMContext):
     await state.update_data(position=message.text)
     await message.answer("Введіть, будь ласка, ваше повне ім'я (ПІБ).")
@@ -382,3 +386,7 @@ async def main():
 if __name__ == '__main__':
     import asyncio
     asyncio.run(main())
+
+profiler.disable()
+profiler.print_stats()
+
