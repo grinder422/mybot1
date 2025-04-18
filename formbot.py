@@ -8,7 +8,7 @@ from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.types import Message
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.utils.keyboard import ReplyKeyboardBuilder
-
+from logger import logger
 
 # Налаштування логування
 logging.basicConfig(level=logging.INFO)
@@ -69,6 +69,7 @@ def validate_email(email: str) -> bool:
 # Команда /start для початку заповнення анкети
 @dp.message(Command('start'))
 async def start(message: Message, state: FSMContext):
+    logger.info(f"User {message.from_user.id} started the bot")
     """
         Обробник команди /start. Запускає опитування користувача.
 
