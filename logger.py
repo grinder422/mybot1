@@ -1,12 +1,14 @@
 import logging
 
-# Налаштування базового логера
+# Основне логування в файл і в консоль
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    filename='bot.log',
-    filemode='a'
+    format='%(asctime)s [%(levelname)s] %(name)s: %(message)s',
+    handlers=[
+        logging.FileHandler("bot.log", encoding='utf-8'),
+        logging.StreamHandler()
+    ]
 )
 
-# Створюємо логер
-logger = logging.getLogger("weather_bot")
+logger = logging.getLogger("telegram_bot")
+

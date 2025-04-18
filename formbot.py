@@ -20,6 +20,7 @@ API_TOKEN = '7222869117:AAFHMqMZcWBYky4usSp94UihV2CbI1mTVJo'
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(storage=MemoryStorage())
 
+
 # Стани для анкети
 class ApplicationForm(StatesGroup):
     """
@@ -169,9 +170,11 @@ async def process_phone_mobile(message: Message, state: FSMContext):
 @dp.message(ApplicationForm.email)
 async def process_email(message: Message, state: FSMContext):
     if not validate_email(message.text):
+        logger.warning(f"Invalid email entered: {message.text} by user {message.from_user.id}")
         await message.answer("Некоректна електронна адреса. Введіть дійсну адресу.")
     else:
         await state.update_data(email=message.text)
+        logger.info(f"Email collected: {message.text} from user {message.from_user.id}")
         await message.answer("Вкажіть ваш сімейний стан (одружений/неодружений).")
         await state.set_state(ApplicationForm.marital_status)
 
