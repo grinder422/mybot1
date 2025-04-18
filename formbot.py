@@ -22,6 +22,9 @@ dp = Dispatcher(storage=MemoryStorage())
 
 # Стани для анкети
 class ApplicationForm(StatesGroup):
+    """
+    Стан FSM для збору даних користувача.
+    """
     position = State()  # Вибір посади
     full_name = State()  # ПІБ
     birth_date = State()  # Дата народження
@@ -66,6 +69,13 @@ def validate_email(email: str) -> bool:
 # Команда /start для початку заповнення анкети
 @dp.message(Command('start'))
 async def start(message: Message, state: FSMContext):
+    """
+        Обробник команди /start. Запускає опитування користувача.
+
+        Args:
+            message (Message): Об'єкт повідомлення.
+            state (FSMContext): Контекст збереження стану FSM.
+        """
     # Запропонуємо вибір позицій через клавіатуру
     builder = ReplyKeyboardBuilder()
     builder.button(text="Продавець-консультант")
@@ -98,6 +108,13 @@ async def process_position(message: Message, state: FSMContext):
 # Обробка ПІБ
 @dp.message(ApplicationForm.full_name)
 async def process_full_name(message: Message, state: FSMContext):
+    """
+        Зберігає повне ім'я користувача.
+
+        Args:
+            message (Message): Повідомлення з введеним ім'ям.
+            state (FSMContext): Контекст FSM.
+        """
     await state.update_data(full_name=message.text)
     await message.answer("Введіть дату народження.")
     await state.set_state(ApplicationForm.birth_date)
